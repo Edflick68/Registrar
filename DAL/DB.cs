@@ -1,5 +1,6 @@
 ﻿using EmailHandling;
 using Models;
+using Wikimedia.Models;
 
 namespace DAL
 {
@@ -30,5 +31,8 @@ namespace DAL
 
         static public Repository<Registration> Registrations { get; set; }
             = new Repository<Registration>();
+
+        static public Repository<Course> Courses { get; set; }
+            = new Repository<Course>();
     }
 }

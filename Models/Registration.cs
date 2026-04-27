@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace Wikimedia.Models
         public int StudentId { get; set; }
         public int CourseId { get; set; }
         public int Year { get; set; }   
+
+        public Course Course => DB.Courses.ToList().FirstOrDefault(c => c.Id == CourseId);
     }
 }
