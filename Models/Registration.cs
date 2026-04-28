@@ -12,6 +12,7 @@ namespace Wikimedia.Models
         public int Id { get; set; }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
+        public int TeacherId { get; set; }
         public int Year { get; set; }   
 
         public Course Course => DB.Courses.ToList().FirstOrDefault(c => c.Id == CourseId);
