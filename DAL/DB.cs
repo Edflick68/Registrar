@@ -34,5 +34,14 @@ namespace DAL
 
         static public Repository<Course> Courses { get; set; }
             = new Repository<Course>();
+
+        static public Repository<Student> Students { get; set; } 
+            = new Repository<Student>();
+
+        static public Repository<Teacher> Teachers { get; set; }
+            = new Repository<Teacher>();
+
+        static public Repository<Allocations> Allocations { get; set; }
+            = new Repository<Allocations>();
     }
 }

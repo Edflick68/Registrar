@@ -72,5 +72,3 @@ namespace Wikimedia.Models
         }
     }
 }
-    }
-}

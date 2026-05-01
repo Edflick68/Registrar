@@ -39,6 +39,14 @@ namespace Wikimedia.Models
             }
         }
         [JsonIgnore]
+        public List<Allocations> Allocations =>
+            DB.Allocations.ToList().Where(a => a.TeacherId == Id).ToList();
+
+        [JsonIgnore]
+            public List<Allocations> NextSessionAllocations =>
+                DB.Allocations.ToList().Where(a => a.TeacherId == Id && a.IsNextSession).ToList();
+
+        [JsonIgnore]
         public List<Course> NextSessionCourses
         {
             get

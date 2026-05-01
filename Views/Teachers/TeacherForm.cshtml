@@ -1,0 +1,11 @@
+﻿@if (!creating)
+ {
+    <details>
+        <summary>@Session</summary>
+        @Helper.SelectionLists(
+           "selectedCoursesId",
+           (SelectList)ViewBag.Allocations,
+           (SelectList)ViewBag.Courses
+        )
+    </details>
+ }

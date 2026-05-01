@@ -1,0 +1,43 @@
+﻿@model Wikimedia.Models.Teacher
+<h2>Prof - Détails</h2>
+
+<section>
+    <h3>@Model.FullName (@Model.Code)</h3>
+    <p>@Model.Email</p>
+    <p>@Model.Phone</p>
+    <p>Date d'embauche: @Model.StartDate.ToLongDateString()</p>
+</section>
+
+<section>
+    <h3>Affections</h3>
+
+    @{
+        var allocationsByYear = Model.Allocations
+                                .OrderByDescending(a => a.Course.Year)
+                                .GroupBy(a => a.Course.Year);
+    }
+
+    @foreach (var yearGroup in allocationsByYear)
+    {
+        <details open>
+            <summary>@yearGroup.Key</summary>
+
+            <ul>
+                @foreach (var allocation in yearGroup
+                    .OrderBy(a => a.Course.Session)
+                    .ThenBy(a => a.Course.Code))
+                {
+                    var c = allocation.Course;
+                    <li>
+                        [@c.Session] @c.Code @c.Title
+                    </li>
+                }
+            </ul>
+        </details>
+    }
+
+</section>
+
+<footer>
+    Session courante: @Session["CurrentYear"]
+</footer>
