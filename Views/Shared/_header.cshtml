@@ -8,6 +8,9 @@
     bool search = Session["Search"] != null ? (bool)Session["Search"] : false;
     string searchString = Session["SearchString"] != null ? (string)Session["SearchString"] : "";
     bool SearchAscending = Session["SortAscending"] != null ? (bool)Session["SortAscending"] : false;
+    bool course = Session["Course"] != null ? (bool)Session["Course"] : false;
+    bool teacher = Session["Teacher"] != null ? (bool)Session["Teacher"] : false;
+    bool student = Session["Student"] != null ? (bool)Session["Student"] : false;
     string iconSortBy = "";
     string iconSortByTitle = "";
 
@@ -153,7 +156,7 @@
 
     </div>
 </div>
-@if (search && controller=="medias" && action == "list")
+@if (search && controller == "medias" && action == "list")
 {
     <div class="searchBar">
         <input type="search" id="searchInput" class="section roundedBorder searchBarItem" value="@searchString" placeholder="Recherche...">
