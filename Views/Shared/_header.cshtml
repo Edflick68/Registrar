@@ -24,6 +24,20 @@
     <div class="headerMenu">
         <i class="siteIcon"></i>
         <div class="pageTitle"> @ViewBag.PageTitle </div>
+        <div class="mainNav">
+            <a href="~/Views/Students/StudentList.cshtml" class="navItem" @(controller == "students" ? "navActive" : "")>
+                <i class="fa fa-graduation-cap"></i>
+                Étudiants
+            </a>
+            <a href="~/Views/Students/StudentList.cshtml" class="navItem" @(controller == "teachers" ? "navActive" : "")>
+                <i class="fa fa-graduation-cap"></i>
+                Cours
+            </a>
+            <a href="~/Views/Students/StudentList.cshtml" class="navItem" @(controller == "courses" ? "navActive" : "")>
+                <i class="fa fa-graduation-cap"></i>
+                Enseignants
+            </a>
+        </div>
         <!-- Direct action context command icons -->
         @switch (action)
         {
@@ -122,7 +136,7 @@
                         <a href="/@controller/Edit" class="cmdIcon fa fa-pen-to-square" title="Modifier..."></a>
                         <i class="cmdIcon fa fa-trash-can"
                            title="Effacer"
-                           onclick="bootbox.confirm(`<b style=color:red>Effacer le Media : </b><h3>@currentMediaTitle?</h3>`, function(result){ if (result) window.location = '/@controller/Delete'; })">
+                           onclick="bootbox.confirm(`<b style=color:red>Effacer cet élément`, function(result){ if (result) window.location = '/@controller/Delete/@ViewBag.Id'; })">
                         </i>
                     }
 
@@ -141,7 +155,7 @@
             case "edit":
                 <div id="mainMenuPanel" class="menu">
                     <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
-                    <a href="/@controller/Details/@currentMediaId" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                    <a href="/@controller/Details/@ViewBag.Id" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                 </div>
                 break;
             case "loginsjournal":

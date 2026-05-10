@@ -122,6 +122,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Allocations.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\EmailView.cs" />
     <Compile Include="Models\Event.cs" />
@@ -139,20 +140,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Views\Site\StudentDetails.cshtml" />
-    <Content Include="Views\Site\StudentEdit.cshtml" />
-    <Content Include="Views\Site\CourseList.cshtml" />
-    <Content Include="Views\Site\CourseDetails.cshtml" />
-    <Content Include="Views\Site\CourseEdit.cshtml" />
-    <Content Include="Views\Site\CourseForm.cshtml" />
-    <None Include="Views\Site\StudentList.cshtml" />
     <Compile Include="WebServices\Countries.cs" />
     <Compile Include="WebServices\GeoLocation.cs" />
-    <Content Include="Views\Site\TeacherList.cshtml" />
-    <Content Include="Views\Site\StudentForm.cshtml" />
-    <Content Include="Views\Site\TeacherDetails.cshtml" />
-    <Content Include="Views\Site\TeacherEdit.cshtml" />
-    <Content Include="Views\Site\TeacherForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Assets\teachers\bc2be815-cd3d-459d-a312-49e60229c80c.jpeg" />
