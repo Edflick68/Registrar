@@ -1,1 +1,37 @@
-﻿
+﻿@Model Course
+@{ 
+    ViewBag.PageTitle = "Cours - Détails";
+    var grouped = (Dictionnary<int, List<Registration>>)ViewBag.GroupedRegistrations;
+}
+
+<div class="detailsContainer">
+    <section class="courseInfo">
+        <h2>@Model.Code</h2>
+        <h3>Session @Model.Session</h3>
+        <p>@Model.Title</p>
+    </section>
+
+    <section class="studentsSection">
+        <h3>Étudiants Inscrits</h3>
+
+        @foreach(var yearGroup in grouped)
+         {
+            <details open class="yearGroup">
+               <summary>@yearGroup.Key</summary>
+
+                <ul>
+                   @foreach(var reg in yearGroup.Value.OrderBy(r => r.Student.LastName))
+                    {
+                       <li>
+                           @reg.Student.Code - @reg.Student.FullName
+                       </li>
+                    }
+                </ul>
+            </details>
+         }
+    </section>
+</div>
+<footer>
+    Session courante: @Session["CurrentYear"]
+</footer>
+ 

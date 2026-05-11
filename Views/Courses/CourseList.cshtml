@@ -1,25 +1,45 @@
 ﻿@model IEnumerable<Models.Course>
 @{
     var yearsList = ((List<int>)Session["CourseYearsList"]).OrderByDescending(i => i);
-}
-@foreach (int year in yearsList)
-{
-    var courses = Model.Where(s => s.Year == year);
-    if (courses.Count() > 0)
+    string search = ViewBag.SearchString ?? "";
+    bool searching = ViewBag.Search ?? false;
+
+    Func<string, string> highlight = (text) =>
     {
-        <details id="course_details_@year">
-            <summary>Cohorte @year </summary>
-            @foreach (var item in courses)
-            {
-                <div class="StudentListLayout">
-                    <a href=" @Url.Action( "Details" , new { id = item .Id })">
-                        <div style="display : flex">
-                            <span class="courseCode"> @item.Code </span>
-                            <div class="cName"> @item.LastName @item.FirstName </div>
-                        </div>
-                    </a>
-                </div>
-            }
+        if (!searching || string.IsNullOrEmpty(search))
+            return text;
+
+        string lower = text.ToLower();
+        string key = search.ToLower();
+        int index = lower.IndexOf(key);
+        if(index < 0) return text;
+
+        return text.Substring(0, index) + "<span class='highlight'>" + text.Substring(index, key.Length) + "</span>" + text.Substring(index + key.Length);
+    };
+}
+<div class="courseListContainer">
+    @for(int session = 1; session <= 6; session++)
+    {
+        var group = Model.Where(c => c.Session == session).ToList();
+        if (!group.Any()) continue;
+        <details open class="sessionGroup">
+            <summary>Session @session</summary>
+            <ul>
+                @foreach(var course in group)
+                {
+                    string caption = $"[{course.Session}] {course.Code} {course.Title}";
+                    string html = highlight(caption);
+
+                    <li>
+                        <a href="~/Views/Courses/CourseDetails.cshtml"/@course.Id class="courseLink">
+                            @Html.Raw(html)
+                        </a>
+                    </li>
+                }
+            </ul>
         </details>
     }
-}
+</div>
+<footer>
+    Session courante: @NextSession.Caption
+</footer>

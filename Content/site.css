@@ -1,5 +1,3 @@
-
-
 form {
     max-width: 4in;
     margin: auto;
@@ -113,4 +111,81 @@ summary {
     color: #666;
     text-decoration: none;
     padding: 4px 8px;
+}
+
+.editContainer{
+    padding: 20px;
+}
+
+.infoSection, .coursesSection {
+    margin-bottom: 20px;
+}
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.formItem label {
+    font-weight: bold;
+}
+details summary {
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.detailsContainer {
+    padding: 20px;
+}
+.courseInfo h2 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+.courseInfo h3 {
+    margin-top: 5px;
+    color: #555;
+}
+
+.studentsSection {
+    margin-top: 30px;
+}
+.yearGroup summary {
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.yearGroup ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.yearGroup li {
+    padding: 3px 0;
+}
+.courseListContainer {
+    padding: 20px;
+}
+.sessionGroup summary {
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.sessionGroup ul {
+    list-style: none;
+    padding-left: 20px;
+}
+.courseLink {
+    text-decoration: none;
+    color: #333;
+}
+.courseLink:hover {
+    text-decoration: underline;
+}
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+.createContainer {
+    padding: 20px;
 }

@@ -1,1 +1,22 @@
-﻿
+﻿@Model Course
+@{ 
+    ViewBag.PageTitle = "Cours - Création";
+}
+<div class="createContainer">
+    <details open class="infoSection">
+        <summary>Informations</summary>
+           <div class="formItem">
+              <label>Session</label>
+              @Html.TextBoxFor(m => m.Session, new { @class = "form-control"})
+           </div>
+           <div class="formItem">
+              <label>Sigle</label>
+              @Html.TextBoxFor(m => m.Code, new { @class = "form-control"})
+           </div>
+           <div class="formItem">
+              <label>Titre</label>
+              @Html.TextBoxFor(m => m.Title, new { @class = "form-control"})
+           </div>
+    </details>
+</div>
+<input type="submit" id="submit" style="display: none"/>

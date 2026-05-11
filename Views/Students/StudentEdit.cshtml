@@ -1,1 +1,45 @@
-﻿
+﻿@Model Student
+@{
+    ViewBag.PageTitle = "Étudiant - Modification";
+    string session = NextSession.Caption;
+}
+
+<div class="editContainer">
+    <details class="infoSection">
+        <summary>Informations</summary>
+        <div class="formGrid">
+            <div class="formItem">
+                <label>Numéro d'étudiant</label>
+                <input type="text" name="Code" value="@Model.Code" readonly class="form-control"/>
+            </div>
+
+            <div class="formItem">
+                <label>Prénom</label>
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+
+            <div class="formItem">
+                <label>Prénom</label>
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+
+            <div>
+                <label>Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+
+            <div>
+                <label>Téléphone</label>
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            </div>
+        </div>
+    </details>
+    <details open class="coursesSection">
+        <summary>Inscriptions : @session</summary>
+        @Helper.SelectionLists(
+        "selectedCoursesId",
+        (SelectList)ViewBag.Registrations,
+        (SelectList)ViewBag.Courses)
+    </details>
+</div>
+<input type="submit" id="submit" style="display: none"/>
