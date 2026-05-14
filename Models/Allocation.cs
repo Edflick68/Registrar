@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Wikimedia.Models
 {
-    public class Allocations
+    public class Allocation
     {
             public int Id { get; set; }
             public int TeacherId { get; set; }
@@ -19,6 +19,6 @@ namespace Wikimedia.Models
             public Course Course => DB.Courses.ToList().FirstOrDefault(c => c.Id == CourseId);
 
         [JsonIgnore]
-        public bool IsNextSession => Year == NextSession.Year && NextSession.ValidSessions.Contains(Course.Session);
+        public bool IsNextSession => Year == NextSession.Year && NextSession.ValidSessions.Contains(int.Parse(Course.Session));
     }
 }
