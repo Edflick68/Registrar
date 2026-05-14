@@ -44,13 +44,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -68,9 +62,6 @@
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.Mvc.5.3.0\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNet.Razor.3.3.0\lib\net45\System.Web.Razor.dll</HintPath>
@@ -93,12 +84,24 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -120,17 +123,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Allocations.cs" />
+    <Compile Include="Models\Course.cs" />
     <Compile Include="Models\EmailView.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventsRepository.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\LoginCredential.cs" />
     <Compile Include="Models\LoginsRepository.cs" />
+    <Compile Include="Models\NextSession.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\NotificationsRepository.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\RenewPasswordView.cs" />
     <Compile Include="Models\SelectListUtilities.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,6 +229,7 @@
     <Content Include="App_Data\Courses.json" />
     <Content Include="App_Data\Students.json" />
     <Content Include="App_Data\Teachers.json" />
+    <None Include="packages.config" />
     <Content Include="Views\Shared\_header.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Accounts\Subscribe.cshtml" />
@@ -237,8 +245,11 @@
     <Content Include="Views\Accounts\LoginsJournal.cshtml" />
     <Content Include="Views\Accounts\ManageUsers.cshtml" />
     <Content Include="Views\Accounts\GetUsers.cshtml" />
-    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\Wikimedia-2026 - Web Deploy.pubxml" />
+    <Content Include="Views\Courses\CourseDetails.cshtml" />
+    <Content Include="Views\Courses\CourseEdit.cshtml" />
+    <Content Include="Views\Courses\CourseForm.cshtml" />
+    <Content Include="Views\Courses\CourseList.cshtml" />
     <Content Include="Views\Students\StudentDetails.cshtml" />
     <Content Include="Views\Students\StudentEdit.cshtml" />
     <Content Include="Views\Students\StudentForm.cshtml" />
@@ -247,10 +258,6 @@
     <Content Include="Views\Teachers\TeacherEdit.cshtml" />
     <Content Include="Views\Teachers\TeacherForm.cshtml" />
     <Content Include="Views\Teachers\TeacherList.cshtml" />
-    <Content Include="Views\Courses\CourseDetails.cshtml" />
-    <Content Include="Views\Courses\CourseEdit.cshtml" />
-    <Content Include="Views\Courses\CourseForm.cshtml" />
-    <Content Include="Views\Courses\CourseList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

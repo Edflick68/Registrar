@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ namespace Wikimedia.Models
     
             public Teacher Teacher => DB.Teachers.ToList().FirstOrDefault(t => t.Id == TeacherId);
             public Course Course => DB.Courses.ToList().FirstOrDefault(c => c.Id == CourseId);
+
+        [JsonIgnore]
+        public bool IsNextSession => Year == NextSession.Year && NextSession.ValidSessions.Contains(Course.Session);
     }
 }
