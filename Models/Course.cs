@@ -18,8 +18,9 @@ namespace Wikimedia.Models
         public string Session { get; set; }
         [JsonIgnore] public string Caption => Code + " " + Title;
         [JsonIgnore] public int Year => int.Parse(Code.Substring(0, 4));
-        [JsonIgnore] public List<Registration> Registrations => DB.Registrations.ToList().Where(r => r.StudentId == Id).ToList();
-        [JsonIgnore] public List<Registration> NextSessionRegistrations => DB.Registrations.ToList().Where(r => r.StudentId == Id && r.IsNextSession).ToList();
+        [JsonIgnore] public List<Registration> Registrations => DB.Registrations.ToList().Where(r => r.CourseId == Id).ToList();
+        [JsonIgnore] public List<Registration> NextSessionRegistrations => DB.Registrations.ToList().Where(r => r.CourseId == Id 
+                                                                           && r.Year == NextSession.Year).ToList();
         [JsonIgnore]
         public List<Course> Courses
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.Course>
+﻿@model IEnumerable<Wikimedia.Models.Course>
 @{
     var yearsList = ((List<int>)Session["CourseYearsList"]).OrderByDescending(i => i);
     string search = ViewBag.SearchString ?? "";
@@ -20,14 +20,17 @@
 <div class="courseListContainer">
     @for(int session = 1; session <= 6; session++)
     {
-        var group = Model.Where(c => c.Session == session).ToList();
-        if (!group.Any()) continue;
+        var group = Model.Where(c => c.Session == session.ToString()).ToList();
+        if (!group.Any())
+        {
+            continue;
+        }
         <details open class="sessionGroup">
             <summary>Session @session</summary>
             <ul>
                 @foreach(var course in group)
                 {
-                    string caption = $"[{course.Session}] {course.Code} {course.Title}";
+                    string caption = "[" + course.Session + "] " + course.Code + " " + course.Title;
                     string html = highlight(caption);
 
                     <li>

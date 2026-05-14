@@ -1,7 +1,8 @@
-﻿@Model Course
-@{ 
+﻿@model Wikimedia.Models.Course
+@using Wikimedia.Models
+@{
     ViewBag.PageTitle = "Cours - Détails";
-    var grouped = (Dictionnary<int, List<Registration>>)ViewBag.GroupedRegistrations;
+    var grouped = (Dictionary<int, List<Registration>>)ViewBag.GroupedRegistrations;
 }
 
 <div class="detailsContainer">
@@ -14,24 +15,20 @@
     <section class="studentsSection">
         <h3>Étudiants Inscrits</h3>
 
-        @foreach(var yearGroup in grouped)
-         {
-            <details open class="yearGroup">
-               <summary>@yearGroup.Key</summary>
-
-                <ul>
-                   @foreach(var reg in yearGroup.Value.OrderBy(r => r.Student.LastName))
-                    {
-                       <li>
-                           @reg.Student.Code - @reg.Student.FullName
-                       </li>
-                    }
-                </ul>
-            </details>
-         }
+        @foreach (var yearGroup in grouped)
+        {
+           <details open class="yearGroup">
+               <summary>Session @yearGroup.Key</summary>
+               <ul>
+                   @foreach (var reg in yearGroup.Value.OrderBy(r => r.Student))
+                   {
+                       <li>@reg.Student</li>
+                   }
+               </ul>
+           </details>
+        }
     </section>
 </div>
 <footer>
     Session courante: @Session["CurrentYear"]
 </footer>
- 
