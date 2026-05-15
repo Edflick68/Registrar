@@ -26,11 +26,11 @@
         </div>
 
         <div id="footerPanel" class="section footerPanel roundedBorder">
-            &copy; @DateTime.Now.Year - Application Web
-            <img src="/updatingView.gif" 
-                 style="width:24px; display:none" 
-                 id="updatingView"
-                 title="Rafraichissement de la vue"/>
+            <a href="/Students/SetYear" style="text-decoration: none; color: inherit; display: block; padding: 12px;">
+                Session courante :
+                <span style="color: #0066cc;">@currentSessionCaption</span>
+                <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
+            </a>
         </div>
 
     </div>
