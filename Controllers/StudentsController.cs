@@ -24,6 +24,7 @@ namespace Wikimedia.Controllers
             NextSession.CurrentDate = new DateTime(year, (session == "Automne" ? 8 : 1), 15);
             return RedirectToAction("StudentList");
         }
+
         public ActionResult Index(string search = "")
         {
             var students = DB.Students.ToList();
@@ -32,6 +33,7 @@ namespace Wikimedia.Controllers
 
             return View(students);
         }
+
         public ActionResult StudentList(string search = "")
         {
             var students = DB.Students.ToList();
