@@ -3,17 +3,3 @@
     ViewBag.PageTitle = "Étudiant - Détails";
     string session = NextSession.Caption;
 }
-<section>
-    <h3>@Model.FullName (@Model.Code)</h3>
-    <p>@Model.Email</p>
-    <p>@Model.Phone</p>
-    <p>@Model.BirthDate.ToLongDateString()</p>
-</section>
-
-<section>
-    <h3>Inscriptions</h3>
-</section>
-
-<footer>
-    Session courante: @Session["CurrentYear"]
-</footer>

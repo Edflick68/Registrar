@@ -62,7 +62,7 @@ namespace Wikimedia.Controllers
             if (!(bool)Session["Search"])
                 Session["SearchString"] = null;
 
-            return RedirectToAction("StudentList");
+            return RedirectToAction("List");
         }
 
         public ActionResult Details(int id)

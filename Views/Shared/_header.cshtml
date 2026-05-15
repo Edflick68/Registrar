@@ -38,7 +38,6 @@
             </a>
         </div>
         }
-        <!-- Direct action context command icons -->
         @switch (action)
         {
             case "login": break;
@@ -62,13 +61,11 @@
                     }
                     <a href="/@controller/ToggleSearch" class="cmdIcon fa fa-search" title="Recherche..."></a>
 
-                    <!-- Dropdown menu -->
                     <div id="menu" class="dropdown ms-auto">
                         <div data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="cmdIcon fa fa-bars" title="Menu"></i>
                         </div>
                         <div class="dropdown-menu noselect" id="DDMenu" style="width:300px !important">
-                            <!-- keep all your dropdown items exactly as they are -->
                             ... (no change here)
                         </div>
                     </div>
@@ -121,7 +118,14 @@
 @if (search && action == "list")
 {
     <div class="searchBar">
-        <input type="search" id="searchInput" class="section roundedBorder searchBarItem" value="@searchString" placeholder="Recherche...">
+        <form method="get" action="/@controller/List" style="display: contents;">
+            <input type="search" 
+                   name="search" 
+                   id="searchInput" 
+                   class="section roundedBorder searchBarItem" 
+                   value="@searchString" 
+                   placeholder="Recherche..." />
+        </form>
     </div>
 }
 
