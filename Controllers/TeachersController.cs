@@ -56,6 +56,8 @@ namespace Wikimedia.Controllers
             return View(new Teacher());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Teacher teacher)
         {
             if (teacher.IsValid())

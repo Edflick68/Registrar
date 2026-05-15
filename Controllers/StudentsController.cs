@@ -68,6 +68,8 @@ namespace Wikimedia.Controllers
             return View(new Student());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
             if (ModelState.IsValid)

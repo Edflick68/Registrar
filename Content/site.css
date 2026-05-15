@@ -101,8 +101,8 @@ summary {
 .mainNav {
     display: flex;
     gap: 12px;
-    margin-left: 20px;
-    align-items: center;
+    margin-left: 2px;
+    align-items: flex-start;
 }
 
 .navItem {

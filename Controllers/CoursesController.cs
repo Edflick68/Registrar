@@ -40,6 +40,8 @@ namespace Wikimedia.Controllers
             ViewBag.PageTitle = "Cours - Création";
             return View(new Course());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Course course)
         {
             if (ModelState.IsValid)

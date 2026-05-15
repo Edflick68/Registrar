@@ -7,7 +7,7 @@ namespace Registrar
     {
         public static string DefaultAction()
         {
-            return "/Accounts/Login";
+            return "/Students/List";
         }
 
         public static void RegisterRoutes(RouteCollection routes)
