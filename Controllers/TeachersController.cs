@@ -48,6 +48,7 @@ namespace Wikimedia.Controllers
 
             ViewBag.GroupedAllocations = grouped;
             ViewBag.IsOwner = true;
+            ViewBag.Id = teacher.Id;
             return View(teacher);
         }
 
@@ -80,6 +81,8 @@ namespace Wikimedia.Controllers
             return View(teacher);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Teacher teacher, List<int> selectedCoursesId)
         {
             if (teacher.IsValid())
@@ -88,6 +91,10 @@ namespace Wikimedia.Controllers
                 DB.Teachers.Update(teacher);
                 return RedirectToAction("List");
             }
+
+            ViewBag.Allocations = teacher.NextSessionCoursesToSelectList;
+            ViewBag.Courses = SelectListUtilities<Course>.Convert(DB.Courses.ToList().OrderBy(c => c.Code).ToList(), "Caption");
+
             return View(teacher);
         }
         public ActionResult Delete(int id)
@@ -95,6 +102,16 @@ namespace Wikimedia.Controllers
             Teacher teacher = DB.Teachers.Get(id);
             if(teacher != null)
                 DB.Teachers.Delete(id);
+            return RedirectToAction("List");
+        }
+        public ActionResult ToggleSearch()
+        {
+            bool current = Session["Search"] != null ? (bool)Session["Search"] : false;
+            Session["Search"] = !current;
+
+            if (!(bool)Session["Search"])
+                Session["SearchString"] = null;
+
             return RedirectToAction("List");
         }
     }
