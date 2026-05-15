@@ -71,6 +71,12 @@ namespace Wikimedia.Controllers
             if (student == null)
                 return RedirectToAction("List");
 
+            var grouped = student.Registrations
+                         .OrderByDescending(r => r.Year)
+                         .GroupBy(r => r.Year)
+                         .ToDictionary(g => g.Key, g => g.ToList());
+
+            ViewBag.GroupedRegistrations = grouped;
             ViewBag.IsOwner = true;
             return View(student);
         }
