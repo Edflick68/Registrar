@@ -3,15 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Wikimedia.Models;
+using DAL;
 
 namespace Wikimedia.Controllers
 {
     public class StudentsController : Controller
     {
-        // GET: Students
-        public ActionResult Index()
+        public ActionResult Index(string search = "")
         {
-            return View();
+            var students = DB.Students.ToList();
+            ViewBag.SearchString = search;
+            ViewBag.Search = !string.IsNullOrEmpty(search);
+
+            return View(students);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Student student = DB.Students.Get(id);
+            if (student == null)
+                return RedirectToAction("Index");
+
+            return View(student);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.PageTitle = "Étudiant - Création";
+            return View(new Student());
+        }
+
+        public ActionResult Create(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                DB.Students.Add(student);
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Student student = DB.Students.Get(id);
+            if (student == null)
+                return RedirectToAction("Index");
+
+            var registeredCourses = student.NextSessionCourses.ToList();
+            var allCourses = DB.Courses.ToList();
+
+            ViewBag.Registrations = new SelectList(registeredCourses, "Id", "Caption");
+            ViewBag.Courses = new SelectList(allCourses, "Id", "Caption");
+
+            return View(student);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Student student, List<int> selectedCoursesId)
+        {
+            if (ModelState.IsValid)
+            {
+                student.UpdateRegistrations(selectedCoursesId);
+                DB.Students.Update(student);
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Student student = DB.Students.Get(id);
+            if (student == null)
+                return RedirectToAction("Index");
+
+            return View(student);
         }
     }
 }
