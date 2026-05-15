@@ -19,6 +19,15 @@ namespace Wikimedia.Models
             public Course Course => DB.Courses.ToList().FirstOrDefault(c => c.Id == CourseId);
 
         [JsonIgnore]
-        public bool IsNextSession => Year == NextSession.Year && NextSession.ValidSessions.Contains(Course.Session);
+        public bool IsNextSession
+        {
+            get
+            {
+                if (Course?.Session == null) return false;
+
+                int sessionNumber = (Course.Session.Contains("Automne") || Course.Session == "A") ? 1 : 2;
+                return Year == NextSession.Year && NextSession.ValidSessions.Contains(sessionNumber);
+            }
+        }
     }
 }

@@ -10,6 +10,20 @@ namespace Wikimedia.Controllers
 {
     public class StudentsController : Controller
     {
+        public ActionResult SetYear()
+        {
+            ViewBag.Year = NextSession.Year;
+            ViewBag.Session = NextSession.ValidSessions.Contains(1) ? "Automne" : "Hiver";
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SetYear(int year, string session)
+        {
+            NextSession.CurrentDate = new DateTime(year, (session == "Automne" ? 8 : 1), 15);
+            return RedirectToAction("Index");
+        }
         public ActionResult Index(string search = "")
         {
             var students = DB.Students.ToList();

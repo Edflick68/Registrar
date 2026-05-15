@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Choisir la session courante";
+    string session = ViewBag.Session as string;
+    int year = (int)ViewBag.Year;
+    bool automnCheck = session == "Automne";
+}
+
+<h2>Session courante</h2>
+
+<form action="/Students/SetYear" method="post">
+    @Html.AntiForgeryToken()
+
+    <div style="color:dodgerblue;font-size:1.0em;">
+        Choisissez l'année et la session pour les prochaines allocations de cours :
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label for="year">Année</label>
+        <input type="number" min="1990" max="@DateTime.Now.Year"
+               value="@year" class="form-control" name="year" id="year" />
+    </div>
+
+    <fieldset class="form-group">
+        <legend>Session</legend>
+        <div style="display:grid; grid-template-columns:20px auto; align-items:last baseline; gap: 10px;">
+            <input type="radio" name="session" value="Automne" id="session_automne" @(automnCheck ? "checked" : "") />
+            <label for="session_automne">Automne</label>
+
+            <input type="radio" name="session" value="Hiver" id="session_hiver" @(!automnCheck ? "checked" : "") />
+            <label for="session_hiver">Hiver</label>
+        </div>
+    </fieldset>
+
+    <div style="margin-top: 20px;">
+        <input type="submit" value="Enregistrer" class="btn btn-primary" />
+        @Html.ActionLink("Annuler", "Index", null, new { @class = "btn btn-default" })
+    </div>
+</form>

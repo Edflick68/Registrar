@@ -1,26 +1,83 @@
 ﻿@model IEnumerable<Wikimedia.Models.Student>
+
 @{
-    var yearsList = ((List<int>)Session["StudentsYearsList"]).OrderByDescending(i => i);
-}
-@foreach (int year in yearsList)
-{
-    var students = Model.Where(s => s.Year == year);
-    if (students.Count() > 0)
-    {
-        <details id="student_details_@year">
-            <summary>Cohorte @year </summary>
-            @foreach (var item in students)
-            {
-                <div class="StudentListLayout">
-                    <a href=" @Url.Action( "Details" , new { id = item .Id })">
-                        <div style="display : flex">
-                            <span class="studentCode"> @item.Code </span>
-                            <div class="studentName"> @item.LastName @item.FirstName </div>
-                        </div>
-                    </a>
-                </div>
-            }
-        </details>
-    }
+    ViewBag.Title = "Vue liste des étudiants";
 }
 
+<h2>Vue liste des étudiants</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div style="margin-bottom: 15px;">
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> Nouvel étudiant
+            </a>
+
+            @using (Html.BeginForm("StudentList", "Students", FormMethod.Get, new { @class = "form-inline pull-right" }))
+            {
+                <div class="input-group" style="width: 350px;">
+                    <input type="text" name="search" value="@ViewBag.SearchString"
+                           class="form-control" placeholder="Rechercher un étudiant..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            }
+        </div>
+
+        @foreach (var cohortGroup in Model.GroupBy(s => s.Year).OrderByDescending(g => g.Key))
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Cohorte @cohortGroup.Key</strong>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        @foreach (var student in cohortGroup.OrderBy(s => s.LastName).ThenBy(s => s.FirstName))
+                        {
+                            <li class="list-group-item">
+                                <a href="@Url.Action("Details", new { id = student.Id })"
+                                   style="text-decoration: none; color: inherit;">
+                                    <strong>@student.Code</strong> @student.FirstName @student.LastName
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <strong>Liste des étudiants inscrits au programme 420</strong>
+            </div>
+            <div class="panel-body">
+                regroupés par années décroissantes. Si l'usager connecté a les droits en écriture,
+                il a accès à la commande d'ajout.
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Session courante</strong>
+            </div>
+            <div class="panel-body">
+                <p><strong>@NextSession.Caption</strong></p>
+                <a href="@Url.Action("SetYear")" class="btn btn-sm btn-info">
+                    Changer la session
+                </a>
+                <small style="display:block; margin-top:8px;">
+                    La session courante est déterminée par la date actuelle
+                    et peut être changée en cliquant dessus.
+                </small>
+            </div>
+        </div>
+
+    </div>
+</div>

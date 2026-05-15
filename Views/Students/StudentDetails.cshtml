@@ -1,6 +1,9 @@
 ﻿@model Wikimedia.Models.Student
-<h2>Prof - Détails</h2>
-
+@Model Student
+@{
+    ViewBag.PageTitle = "Étudiant - Détails";
+    string session = NextSession.Caption;
+}
 <section>
     <h3>@Model.FullName (@Model.Code)</h3>
     <p>@Model.Email</p>

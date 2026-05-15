@@ -24,6 +24,7 @@ namespace Wikimedia.Models
         [JsonIgnore] public int Year => int.Parse(Code.Substring(0, 4));
         [JsonIgnore] public List<Registration> Registrations => DB.Registrations.ToList().Where(r => r.StudentId == Id).ToList();
         [JsonIgnore] public List<Registration> NextSessionRegistrations => DB.Registrations.ToList().Where(r => r.StudentId == Id && r.IsNextSession).ToList();
+
         [JsonIgnore]
         public List<Course> Courses
         {
