@@ -22,7 +22,7 @@ namespace Wikimedia.Controllers
         public ActionResult SetYear(int year, string session)
         {
             NextSession.CurrentDate = new DateTime(year, (session == "Automne" ? 8 : 1), 15);
-            return RedirectToAction("StudentList");
+            return RedirectToAction("List");
         }
 
         public ActionResult Index(string search = "")
@@ -34,7 +34,7 @@ namespace Wikimedia.Controllers
             return View(students);
         }
 
-        public ActionResult StudentList(string search = "")
+        public ActionResult List(string search = "")
         {
             var students = DB.Students.ToList();
 
@@ -51,7 +51,7 @@ namespace Wikimedia.Controllers
             ViewBag.SearchString = search;
             ViewBag.SearchMode = Session["Search"] != null ? (bool)Session["Search"] : false;
 
-            return View("StudentList", students);
+            return View(students);
         }
 
         public ActionResult ToggleSearch()
@@ -69,7 +69,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             return View(student);
         }
@@ -80,12 +80,14 @@ namespace Wikimedia.Controllers
             return View(new Student());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Student student)
         {
             if (ModelState.IsValid)
             {
                 DB.Students.Add(student);
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
             }
             return View(student);
         }
@@ -94,7 +96,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             var registeredCourses = student.NextSessionCourses.ToList();
             var allCourses = DB.Courses.ToList();
@@ -112,7 +114,7 @@ namespace Wikimedia.Controllers
             {
                 student.UpdateRegistrations(selectedCoursesId);
                 DB.Students.Update(student);
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
             }
             return View(student);
         }
@@ -121,7 +123,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             return View(student);
         }

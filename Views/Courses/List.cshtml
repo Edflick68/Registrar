@@ -34,7 +34,7 @@
                     string html = highlight(caption);
 
                     <li>
-                        <a href="~/Views/Courses/CourseDetails.cshtml"/@course.Id class="courseLink">
+                        <a href=" @Url.Action( "Details" , new { id = course.Id })">
                             @Html.Raw(html)
                         </a>
                     </li>

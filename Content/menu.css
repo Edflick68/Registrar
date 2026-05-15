@@ -44,7 +44,7 @@
 }
 
 .siteIcon {
-    background-image: URL('../WebApp.png');
+    background-image: url('../WebIcon.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

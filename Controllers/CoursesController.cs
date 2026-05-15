@@ -16,7 +16,7 @@ namespace Wikimedia.Controllers
             ViewBag.SearchString = search;
             ViewBag.Search = !string.IsNullOrEmpty(search);
 
-            Session["CourseYearList"] = courses.Select(c => c.Session).Distinct().ToList();
+            Session["CourseYearsList"] = courses.Select(c => int.Parse(c.Session)).Distinct().OrderByDescending(y => y).ToList();
             return View(courses);
         }
 
@@ -40,6 +40,8 @@ namespace Wikimedia.Controllers
             ViewBag.PageTitle = "Cours - Création";
             return View(new Course());
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Course course)
         {
             if (ModelState.IsValid)

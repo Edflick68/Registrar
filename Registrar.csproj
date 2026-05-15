@@ -218,7 +218,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="WebApp.png" />
+    <Content Include="WebIcon.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -248,18 +248,18 @@
     <Content Include="Views\Accounts\ManageUsers.cshtml" />
     <Content Include="Views\Accounts\GetUsers.cshtml" />
     <None Include="Properties\PublishProfiles\Wikimedia-2026 - Web Deploy.pubxml" />
-    <Content Include="Views\Courses\CourseDetails.cshtml" />
-    <Content Include="Views\Courses\CourseEdit.cshtml" />
-    <Content Include="Views\Courses\CourseForm.cshtml" />
-    <Content Include="Views\Courses\CourseList.cshtml" />
-    <Content Include="Views\Students\StudentDetails.cshtml" />
-    <Content Include="Views\Students\StudentEdit.cshtml" />
-    <Content Include="Views\Students\StudentForm.cshtml" />
-    <Content Include="Views\Students\StudentList.cshtml" />
-    <Content Include="Views\Teachers\TeacherDetails.cshtml" />
-    <Content Include="Views\Teachers\TeacherEdit.cshtml" />
-    <Content Include="Views\Teachers\TeacherForm.cshtml" />
-    <Content Include="Views\Teachers\TeacherList.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\List.cshtml" />
+    <Content Include="Views\Students\Details.cshtml" />
+    <Content Include="Views\Students\Edit.cshtml" />
+    <Content Include="Views\Students\Create.cshtml" />
+    <Content Include="Views\Students\List.cshtml" />
+    <Content Include="Views\Teachers\Details.cshtml" />
+    <Content Include="Views\Teachers\Edit.cshtml" />
+    <Content Include="Views\Teachers\Create.cshtml" />
+    <Content Include="Views\Teachers\List.cshtml" />
     <Content Include="Views\Students\SetYear.cshtml" />
   </ItemGroup>
   <PropertyGroup>
