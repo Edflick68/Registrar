@@ -12,7 +12,7 @@
         @if (ViewBag.SearchMode as bool? ?? false)
         {
             <div style="margin-bottom: 15px; text-align: left;">
-                @using (Html.BeginForm("StudentList", "Students", FormMethod.Get, new { @class = "form-inline" }))
+                @using (Html.BeginForm("List", "Students", FormMethod.Get, new { @class = "form-inline" }))
                 {
                     <div class="input-group" style="width: 350px;">
                         <input type="text" name="search" value="@(ViewBag.SearchString ?? "")"

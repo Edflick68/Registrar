@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Wikimedia.Models.Teacher>
 @{
+    ViewBag.Title = "Vue liste des enseignants";
+    ViewBag.PageTitle = "Enseignants";
     var yearsList = (Session["TeachersYearsList"] as List<int>) ?? new List<int>();
     string search = ViewBag.SearchString ?? "";
     bool searching = ViewBag.Search ?? false;
@@ -12,7 +14,7 @@
         string key = search.ToLower();
         int index = lower.IndexOf(key);
         if (index < 0) return text;
-        return text.Substring(0, index) + 
+        return text.Substring(0, index) +
         "<span class='highlight'>" + text.Substring(index, key.Length) + "</span>" + text.Substring(index + key.Length);
     };
 }
@@ -26,7 +28,7 @@
             <a href="@Url.Action("Details", "Teachers", new {id = teacher.Id})">
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <span class="teacherCode">@teacher.Code</span>
-                    <img src="@teacher.Avatar" alt="@teacher.FullName" class="teacherAvatar"/>
+                    <img src="@teacher.Avatar" alt="@teacher.FullName" class="teacherAvatar" />
                     <div class="tName">@Html.Raw(html)</div>
                 </div>
             </a>
