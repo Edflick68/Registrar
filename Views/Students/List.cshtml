@@ -15,7 +15,7 @@
                 <span class="glyphicon glyphicon-plus"></span> Nouvel étudiant
             </a>
 
-            @using (Html.BeginForm("StudentList", "Students", FormMethod.Get, new { @class = "form-inline pull-right" }))
+            @using (Html.BeginForm("List", "Students", FormMethod.Get, new { @class = "form-inline pull-right" }))
             {
                 <div class="input-group" style="width: 350px;">
                     <input type="text" name="search" value="@ViewBag.SearchString"
