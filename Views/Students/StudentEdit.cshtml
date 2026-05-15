@@ -1,4 +1,5 @@
-﻿@Model Student
+﻿@model Wikimedia.Models.Student
+@Model Student
 @{
     ViewBag.PageTitle = "Étudiant - Modification";
     string session = NextSession.Caption;
@@ -10,7 +11,7 @@
         <div class="formGrid">
             <div class="formItem">
                 <label>Numéro d'étudiant</label>
-                <input type="text" name="Code" value="@Model.Code" readonly class="form-control"/>
+                <input type="text" name="Code" value="@Model.Code" readonly class="form-control" />
             </div>
 
             <div class="formItem">
@@ -19,7 +20,7 @@
             </div>
 
             <div class="formItem">
-                <label>Prénom</label>
+                <label>Nom</label>
                 @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
             </div>
 
@@ -42,4 +43,4 @@
         (SelectList)ViewBag.Courses)
     </details>
 </div>
-<input type="submit" id="submit" style="display: none"/>
+<input type="submit" id="submit" style="display: none" />
