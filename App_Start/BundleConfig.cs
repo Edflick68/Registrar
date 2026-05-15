@@ -24,10 +24,11 @@ namespace Registrar
                         "~/Content/popup.css",
                         "~/Content/Selection.css",
                         "~/Content/site.css",
-                        "~/Content/menu.css", 
+                        "~/Content/menu.css",
                         "~/Content/Icons.css",
                         "~/Content/image-control.css",
-                        "~/Content/jqui-custom-datepicker.css"));
+                        "~/Content/jqui-custom-datepicker.css",
+                        "~/Content/Students.css"));
         }
     }
 }
