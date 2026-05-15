@@ -189,3 +189,32 @@ details summary {
 .createContainer {
     padding: 20px;
 }
+.teachersContainer {
+    padding: 10px;
+}
+.teacherListLayout{
+    margin: 5px 0;
+}
+.teacherAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.teacherCode {
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.tName{
+    font-size: 1rem;
+}
+.tHighlight {
+    background-color: yellow;
+}
+.teacherAvatarDetails {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}

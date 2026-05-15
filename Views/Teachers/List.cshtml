@@ -1,25 +1,40 @@
 ﻿@model IEnumerable<Wikimedia.Models.Teacher>
 @{
-    var yearsList = ((List<int>)Session["CourseYearsList"]).OrderByDescending(i => i);
-}
-@foreach (int year in yearsList)
-{
-    var courses = Model.Where(s => s.Year == year);
-    if (courses.Count() > 0)
+    ViewBag.Title = "Vue liste des enseignants";
+    ViewBag.PageTitle = "Enseignants";
+    var yearsList = (Session["TeachersYearsList"] as List<int>) ?? new List<int>();
+    string search = ViewBag.SearchString ?? "";
+    bool searching = ViewBag.Search ?? false;
+
+    Func<string, string> highlight = (text) =>
     {
-        <details id="teacher_details_@year">
-            <summary>Cohorte @year </summary>
-            @foreach (var item in courses)
-            {
-                <div class="TeacherListLayout">
-                    <a href=" @Url.Action( "Details" , new { id = item .Id })">
-                        <div style="display : flex">
-                            <span class="teacherCode"> @item.Code </span>
-                            <div class="tName"> @item.LastName @item.FirstName </div>
-                        </div>
-                    </a>
-                </div>
-            }
-        </details>
-    }
+        if (!searching || string.IsNullOrEmpty(search))
+            return text;
+        string lower = text.ToLower();
+        string key = search.ToLower();
+        int index = lower.IndexOf(key);
+        if (index < 0) return text;
+        return text.Substring(0, index) +
+        "<span class='highlight'>" + text.Substring(index, key.Length) + "</span>" + text.Substring(index + key.Length);
+    };
 }
+<div class="teachersContainer">
+    @foreach (var teacher in Model.OrderByDescending(t => t.LastName))
+    {
+        string caption = teacher.LastName + " " + teacher.FirstName;
+        string html = highlight(caption);
+
+        <div class="TeacherListLayout">
+            <a href="@Url.Action("Details", "Teachers", new {id = teacher.Id})">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span class="teacherCode">@teacher.Code</span>
+                    <img src="@teacher.Avatar" alt="@teacher.FullName" class="teacherAvatar" />
+                    <div class="tName">@Html.Raw(html)</div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+<footer>
+    Session courante: @NextSession.Caption
+</footer>

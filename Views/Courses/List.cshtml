@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Wikimedia.Models.Course>
 @{
+    ViewBag.Title = "Vue liste des cours";
+    ViewBag.PageTitle = "Cours";
     var yearsList = ((List<int>)Session["CourseYearsList"]).OrderByDescending(i => i);
     string search = ViewBag.SearchString ?? "";
     bool searching = ViewBag.Search ?? false;

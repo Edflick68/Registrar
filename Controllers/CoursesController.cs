@@ -32,6 +32,7 @@ namespace Wikimedia.Controllers
                           .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedRegistrations = grouped;
+            ViewBag.IsOwner = true;
             return View(course);
         }
 
