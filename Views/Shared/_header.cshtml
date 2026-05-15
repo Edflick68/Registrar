@@ -24,6 +24,8 @@
     <div class="headerMenu">
         <i class="siteIcon"></i>
         <div class="pageTitle"> @ViewBag.PageTitle </div>
+        if(@userConnected)
+        {
         <div class="mainNav">
             <a href="~/Students/List" class="navItem" @(controller == "students" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
@@ -38,6 +40,7 @@
                 Cours
             </a>
         </div>
+        }
         <!-- Direct action context command icons -->
         @switch (action)
         {
