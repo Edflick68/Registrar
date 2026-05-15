@@ -59,6 +59,7 @@ namespace Wikimedia.Controllers
             if (student == null)
                 return RedirectToAction("List");
 
+            ViewBag.IsOwner = true;
             return View(student);
         }
 

@@ -22,7 +22,7 @@ namespace Wikimedia.Models
         public string Avatar { get; set; }
         [JsonIgnore] public string FullName => LastName + " " + FirstName;
         [JsonIgnore] public string Caption => Code + " " + LastName + " " + FirstName;
-        [JsonIgnore] public int Year => int.Parse(Code.Substring(0, 4));
+        [JsonIgnore] public int Year => StartDate.Year;
         [JsonIgnore] public List<Allocation> NextSessionAllocations => DB.Allocations.ToList().Where(a => a.TeacherId == Id && a.Year == NextSession.Year).ToList();
         [JsonIgnore]
         public List<Course> Courses

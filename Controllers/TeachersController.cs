@@ -28,7 +28,7 @@ namespace Wikimedia.Controllers
                            .ToList();
             }
 
-            Session["CourseYearList"] = teachers
+            Session["TeachersYearsList"] = teachers
                                         .Select(t => t.StartDate.Year)
                                         .Distinct()
                                         .OrderByDescending(y => y)
@@ -47,6 +47,7 @@ namespace Wikimedia.Controllers
                                   .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedAllocations = grouped;
+            ViewBag.IsOwner = true;
             return View(teacher);
         }
 
