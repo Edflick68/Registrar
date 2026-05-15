@@ -70,6 +70,7 @@ namespace Wikimedia.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Course course, List<int> selectedStudentsId)
         {
             if (ModelState.IsValid)

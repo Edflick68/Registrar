@@ -97,6 +97,8 @@ namespace Wikimedia.Controllers
 
             return View(teacher);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             Teacher teacher = DB.Teachers.Get(id);

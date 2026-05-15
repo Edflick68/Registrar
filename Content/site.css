@@ -218,3 +218,29 @@ details summary {
     border-radius: 50%;
     object-fit: cover;
 }
+.studentDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+.headerSection h2{
+    margin-bottom: 5px;
+}
+.studentInfo p {
+    margin: 2px 0;
+}
+.inscriptionSection details{
+    margin-top: 10px;
+}
+.courseList {
+    list-style: none;
+    padding-left: 15px;
+}
+.courseList li a{
+    text-decoration: none;
+    color: #007bff;
+}
+.courseList li a:hover {
+    text-decoration: underline;
+}
