@@ -13,7 +13,7 @@ namespace Wikimedia.Controllers
     [UserAccess(Access.Admin)]
     public class TeachersController : Controller
     {
-        public ActionResult List(string search = "")
+        public ActionResult TeacherList(string search = "")
         {
             var teachers = DB.Teachers.ToList();
 
@@ -47,7 +47,7 @@ namespace Wikimedia.Controllers
                                   .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedAllocations = grouped;
-            return View(teacher);
+            return View("TeacherDetails",teacher);
         }
 
         public ActionResult Create()

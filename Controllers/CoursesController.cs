@@ -10,13 +10,13 @@ namespace Wikimedia.Controllers
 {
     public class CoursesController : Controller
     {
-        public ActionResult List(string search = "")
+        public ActionResult CourseList(string search = "")
         {
             var courses = DB.Courses.ToList();
             ViewBag.SearchString = search;
             ViewBag.Search = !string.IsNullOrEmpty(search);
 
-            Session["CourseYearList"] = courses.Select(c => c.Session).Distinct().ToList();
+            Session["CourseYearsList"] = courses.Select(c => int.Parse(c.Session)).Distinct().OrderByDescending(y => y).ToList();
             return View(courses);
         }
 
@@ -32,7 +32,7 @@ namespace Wikimedia.Controllers
                           .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedRegistrations = grouped;
-            return View(course);
+            return View("CourseDetails",course);
         }
 
         public ActionResult Create()
