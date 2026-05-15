@@ -1,1 +1,7 @@
-﻿
+﻿if (! creating )
+{
+<details open>
+    <summary>@Session </summary>
+    @Helper.SelectionLists("selectedCoursesId", (SelectList)ViewBag.Registrations, (SelectList)ViewBag.Courses)
+</details>
+}

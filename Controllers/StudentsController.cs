@@ -49,8 +49,20 @@ namespace Wikimedia.Controllers
             }
 
             ViewBag.SearchString = search;
+            ViewBag.SearchMode = Session["Search"] != null ? (bool)Session["Search"] : false;
 
             return View("StudentList", students);
+        }
+
+        public ActionResult ToggleSearch()
+        {
+            bool current = Session["Search"] != null ? (bool)Session["Search"] : false;
+            Session["Search"] = !current;
+
+            if (!(bool)Session["Search"])
+                Session["SearchString"] = null;
+
+            return RedirectToAction("StudentList");
         }
 
         public ActionResult Details(int id)
