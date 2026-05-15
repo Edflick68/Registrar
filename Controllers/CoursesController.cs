@@ -10,7 +10,7 @@ namespace Wikimedia.Controllers
 {
     public class CoursesController : Controller
     {
-        public ActionResult CourseList(string search = "")
+        public ActionResult List(string search = "")
         {
             var courses = DB.Courses.ToList();
             ViewBag.SearchString = search;

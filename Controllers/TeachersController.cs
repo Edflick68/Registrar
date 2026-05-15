@@ -13,7 +13,7 @@ namespace Wikimedia.Controllers
     [UserAccess(Access.Admin)]
     public class TeachersController : Controller
     {
-        public ActionResult TeacherList(string search = "")
+        public ActionResult List(string search = "")
         {
             var teachers = DB.Teachers.ToList();
 

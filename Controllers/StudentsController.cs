@@ -34,7 +34,7 @@ namespace Wikimedia.Controllers
             return View(students);
         }
 
-        public ActionResult StudentList(string search = "")
+        public ActionResult List(string search = "")
         {
             var students = DB.Students.ToList();
 
@@ -50,14 +50,14 @@ namespace Wikimedia.Controllers
 
             ViewBag.SearchString = search;
 
-            return View("StudentList", students);
+            return View(students);
         }
 
         public ActionResult Details(int id)
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             return View(student);
         }
@@ -73,7 +73,7 @@ namespace Wikimedia.Controllers
             if (ModelState.IsValid)
             {
                 DB.Students.Add(student);
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
             }
             return View(student);
         }
@@ -82,7 +82,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             var registeredCourses = student.NextSessionCourses.ToList();
             var allCourses = DB.Courses.ToList();
@@ -100,7 +100,7 @@ namespace Wikimedia.Controllers
             {
                 student.UpdateRegistrations(selectedCoursesId);
                 DB.Students.Update(student);
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
             }
             return View(student);
         }
@@ -109,7 +109,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("StudentList");
+                return RedirectToAction("List");
 
             return View(student);
         }

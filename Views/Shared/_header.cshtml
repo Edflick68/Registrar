@@ -25,15 +25,15 @@
         <i class="siteIcon"></i>
         <div class="pageTitle"> @ViewBag.PageTitle </div>
         <div class="mainNav">
-            <a href="~/Students/StudentList" class="navItem" @(controller == "students" ? "navActive" : "")>
+            <a href="~/Students/List" class="navItem" @(controller == "students" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Étudiants
             </a>
-            <a href="/Teachers/TeacherList" class="navItem" @(controller == "teachers" ? "navActive" : "")>
+            <a href="/Teachers/List" class="navItem" @(controller == "teachers" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Enseignants
             </a>
-            <a href="/Courses/CourseList" class="navItem" @(controller == "courses" ? "navActive" : "")>
+            <a href="/Courses/List" class="navItem" @(controller == "courses" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Cours
             </a>
@@ -109,7 +109,7 @@
                 {
                     <div id="mainMenuPanel" class="menu">
                         <i class="cmdIcon submitCmd fa fa-circle-check" title="Soumettre" onclick="document.getElementById('submit').click()"></i>
-                        <a href="@index" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
+                        <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Annuler"></a>
                     </div>
                 }
                 break;
@@ -124,7 +124,7 @@
             case "manageusers":
             case "about":
                 <div id="mainMenuPanel" class="menu">
-                    <a href="@index" class="cmdIcon fa fa-square-xmark" title="Retour"></a>
+                    <a href="/@controller/List" class="cmdIcon fa fa-square-xmark" title="Retour"></a>
                 </div>
                 break;
         }
