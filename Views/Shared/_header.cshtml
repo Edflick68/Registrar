@@ -29,13 +29,13 @@
                 <i class="fa fa-graduation-cap"></i>
                 Étudiants
             </a>
-            <a href="/Teachers/List" class="navItem" @(controller == "teachers" ? "navActive" : "")>
-                <i class="fa fa-graduation-cap"></i>
-                Cours
-            </a>
-            <a href="/Courses/List" class="navItem" @(controller == "courses" ? "navActive" : "")>
+            <a href="~/Teachers/TeacherList" class="navItem" @(controller == "teachers" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Enseignants
+            </a>
+            <a href="~/Courses/CourseList" class="navItem" @(controller == "courses" ? "navActive" : "")>
+                <i class="fa fa-graduation-cap"></i>
+                Cours
             </a>
         </div>
         <!-- Direct action context command icons -->
