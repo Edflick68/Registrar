@@ -4,28 +4,12 @@
     ViewBag.Title = "Vue liste des étudiants";
     ViewBag.PageTitle = "Étudiants";
     string search = ViewBag.SearchString as string ?? "";
+    string currentSessionCaption = NextSession.ShortCaption;
 }
 
 
 <div class="row">
     <div class="col-md-12">
-        @if (ViewBag.SearchMode as bool? ?? false)
-        {
-            <div style="margin-bottom: 15px; text-align: left;">
-                @using (Html.BeginForm("StudentList", "Students", FormMethod.Get, new { @class = "form-inline" }))
-                {
-                    <div class="input-group" style="width: 350px;">
-                        <input type="text" name="search" value="@(ViewBag.SearchString ?? "")"
-                               class="form-control" placeholder="Rechercher un étudiant..." autofocus />
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
-                }
-            </div>
-        }
 
         @foreach (var cohortGroup in Model.GroupBy(s => s.Year).OrderByDescending(g => g.Key))
         {
@@ -54,20 +38,30 @@
     </div>
 
 </div>
-@helper Highlight(string text, string searchTerm)
-{
-    if (string.IsNullOrEmpty(searchTerm) || string.IsNullOrEmpty(text))
+<div class="row">
+    <div class="col-md-12">
+
+        <a href="/Students/SetYear" style="text-decoration: none; color: inherit; display: block; padding: 12px;">
+            Session courante :
+            <span style="color: #0066cc;">@currentSessionCaption</span>
+            <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
+        </a>
+    </div>
+</div>
+    @helper Highlight(string text, string searchTerm)
     {
-        <text>@text</text>
-        return;
+        if (string.IsNullOrEmpty(searchTerm) || string.IsNullOrEmpty(text))
+        {
+            <text>@text</text>
+            return;
+        }
+
+        var highlighted = System.Text.RegularExpressions.Regex.Replace(
+            text,
+            System.Text.RegularExpressions.Regex.Escape(searchTerm),
+            match => "<span class=\"highlight\">" + match.Value + "</span>",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase
+        );
+
+        <text>@Html.Raw(highlighted)</text>
     }
-
-    var highlighted = System.Text.RegularExpressions.Regex.Replace(
-        text,
-        System.Text.RegularExpressions.Regex.Escape(searchTerm),
-        match => "<span class=\"highlight\">" + match.Value + "</span>",
-        System.Text.RegularExpressions.RegexOptions.IgnoreCase
-    );
-
-    <text>@Html.Raw(highlighted)</text>
-}
