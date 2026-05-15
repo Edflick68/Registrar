@@ -47,7 +47,7 @@ namespace Wikimedia.Controllers
                                   .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedAllocations = grouped;
-            return View("TeacherDetails",teacher);
+            return View(teacher);
         }
 
         public ActionResult Create()

@@ -32,7 +32,7 @@ namespace Wikimedia.Controllers
                           .ToDictionary(g => g.Key, g => g.ToList());
 
             ViewBag.GroupedRegistrations = grouped;
-            return View("CourseDetails",course);
+            return View(course);
         }
 
         public ActionResult Create()

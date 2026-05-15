@@ -22,7 +22,7 @@ namespace Wikimedia.Controllers
         public ActionResult SetYear(int year, string session)
         {
             NextSession.CurrentDate = new DateTime(year, (session == "Automne" ? 8 : 1), 15);
-            return RedirectToAction("StudentList");
+            return RedirectToAction("List");
         }
 
         public ActionResult Index(string search = "")
