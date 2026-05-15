@@ -24,7 +24,7 @@
     <div class="headerMenu">
         <i class="siteIcon"></i>
         <div class="pageTitle"> @ViewBag.PageTitle </div>
-        if(@userConnected)
+        @if(userConnected)
         {
         <div class="mainNav">
             <a href="~/Students/List" class="navItem" @(controller == "students" ? "navActive" : "")>
