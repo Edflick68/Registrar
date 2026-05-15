@@ -1,52 +1,46 @@
-﻿@Model Teacher
+﻿@model Wikimedia.Models.Teacher
 @{
-    ViewBag.PageTitle = "Course - Modification";
+    ViewBag.PageTitle = "Enseignant - Modification";
     string session = NextSession.Caption;
 }
 
 <details open>
     <summary>Informations</summary>
     <div class="formGrid">
-        @Model Course
-@{
-    ViewBag.PageTitle = "Course - Modification";
-    string session = NextSession.Caption;
-}
+        <details open>
+            <summary>Informations</summary>
+            <div class="formGrid">
+                <div class="formItem">
+                    <label>Prénom</label>
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
 
-<details open>
-    <summary>Informations</summary>
-    <div class="formGrid">
-        <div class="formItem">
-            <label>Prénom</label>
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        </div>
+                <div class="formItem">
+                    <label>Prénom</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                </div>
 
-        <div class="formItem">
-            <label>Prénom</label>
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        </div>
+                <div>
+                    <label>Email</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
 
-        <div>
-            <label>Email</label>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
+                <div>
+                    <label>Téléphone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                </div>
 
-        <div>
-            <label>Téléphone</label>
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-        </div>
-
-        <div class="formItem">
-            <label>Avatar</label>
-            @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control" })
-        </div>
-    </div>
-</details>
-<details open>
-    <summary>Allocations: @session</summary>
-    @Helper.SelectionLists(
-        "selectedCoursesId",
-        (SelectList)ViewBag.Allocations,
-        (SelectList)ViewBag.Students)
-</details>
-<input type="submit" id="submit" style="display: none"/>
+                <div class="formItem">
+                    <label>Avatar</label>
+                    @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control" })
+                </div>
+            </div>
+        </details>
+        <details open>
+            <summary>Allocations: @session</summary>
+            @Helper.SelectionLists(
+                "selectedCoursesId",
+                (SelectList)ViewBag.Allocations,
+                (SelectList)ViewBag.Students)
+        </details>
+        <input type="submit" id="submit" style="display: none" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Wikimedia.Models
 {
-    public class Allocations
+    public class Allocation
     {
             public int Id { get; set; }
             public int TeacherId { get; set; }

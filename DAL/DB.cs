@@ -41,7 +41,7 @@ namespace DAL
         static public Repository<Teacher> Teachers { get; set; }
             = new Repository<Teacher>();
 
-        static public Repository<Allocations> Allocations { get; set; }
-            = new Repository<Allocations>();
+        static public Repository<Allocation> Allocations { get; set; }
+            = new Repository<Allocation>();
     }
 }

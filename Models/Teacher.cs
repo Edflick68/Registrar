@@ -23,15 +23,14 @@ namespace Wikimedia.Models
         [JsonIgnore] public string FullName => LastName + " " + FirstName;
         [JsonIgnore] public string Caption => Code + " " + LastName + " " + FirstName;
         [JsonIgnore] public int Year => int.Parse(Code.Substring(0, 4));
-        [JsonIgnore] public List<Registration> Registrations => DB.Registrations.ToList().Where(r => r.TeacherId == Id).ToList();
-        [JsonIgnore] public List<Registration> NextSessionRegistrations => DB.Registrations.ToList().Where(r => r.StudentId == Id && r.IsNextSession).ToList();
+        [JsonIgnore] public List<Allocation> NextSessionAllocations => DB.Allocations.ToList().Where(a => a.TeacherId == Id && a.Year == NextSession.Year).ToList();
         [JsonIgnore]
         public List<Course> Courses
         {
             get
             {
                 var courses = new List<Course>();
-                foreach (var registration in Registrations.OrderBy(r => r.Course.Code))
+                foreach (var registration in Allocations.OrderBy(r => r.Course.Code))
                 {
                     courses.Add(registration.Course);
                 }
@@ -39,49 +38,37 @@ namespace Wikimedia.Models
             }
         }
         [JsonIgnore]
-        public List<Allocations> Allocations =>
+        public List<Allocation> Allocations =>
             DB.Allocations.ToList().Where(a => a.TeacherId == Id).ToList();
 
         [JsonIgnore]
-            public List<Allocations> NextSessionAllocations =>
-                DB.Allocations.ToList().Where(a => a.TeacherId == Id && a.IsNextSession).ToList();
-
-        [JsonIgnore]
-        public List<Course> NextSessionCourses
-        {
-            get
-            {
-                var courses = new List<Course>();
-                foreach (var registration in NextSessionRegistrations.OrderBy(r => r.Course.Code))
-                {
-                    courses.Add(registration.Course);
-                }
-                return courses;
-            }
-        }
-        [JsonIgnore] public SelectList CoursesSelectList => SelectListUtilities<Course>.Convert(Courses, "Caption");
+        public List<Course> NextSessionCourses => NextSessionAllocations.Select(a => a.Course).OrderBy(c => c.Code).ToList();
 
         [JsonIgnore]
         public SelectList NextSessionCoursesToSelectList => SelectListUtilities<Course>.Convert(NextSessionCourses, "Caption");
-
-        public void DeleteAllRegistrations()
+        public void DeleteNextSessionAllocations()
         {
-            foreach (Registration registration in Registrations)
-                DB.Registrations.Delete(registration.Id);
+            foreach (Allocation allocation in NextSessionAllocations)
+                DB.Allocations.Delete(allocation.Id);
         }
-        public void DeleteNextSessionRegistrations()
+        public void UpdateAllocations(List<int> selectedCoursesId)
         {
-            foreach (Registration registration in NextSessionRegistrations)
-                DB.Registrations.Delete(registration.Id);
-        }
-        public void UpdateRegistrations(List<int> selectedCoursesId)
-        {
-            DeleteNextSessionRegistrations();
+            DeleteNextSessionAllocations();
             if (selectedCoursesId != null)
                 foreach (int courseId in selectedCoursesId)
                 {
-                    DB.Registrations.Add(new Registration { TeacherId = Id, CourseId = courseId });
+                    DB.Allocations.Add(new Allocation
+                    {
+                        TeacherId = Id,
+                        CourseId = courseId,
+                        Year = NextSession.Year
+                    });
                 }
+        }
+
+        public bool IsValid()
+        {
+            return !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Code);
         }
     }
 }

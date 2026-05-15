@@ -1,11 +1,33 @@
-﻿@if (!creating)
- {
-    <details>
-        <summary>@Session</summary>
-        @Helper.SelectionLists(
-           "selectedCoursesId",
-           (SelectList)ViewBag.Allocations,
-           (SelectList)ViewBag.Courses
-        )
+﻿@model Wikimedia.Models.Teacher
+@{
+    ViewBag.PageTitle = "Enseignant - Création";
+}
+<div class="createContainer">
+    <details open class="infoSection">
+        <summary>Informations</summary>
+        <div class="formItem">
+            <label>Prénom</label>
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="formItem">
+            <label>Prénom</label>
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Téléphone</label>
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        </div>
+        <div class="formItem">
+            <label>Avatar</label>
+            @Html.TextBoxFor(m => m.Avatar, new { @class = "form-control" })
+        </div>
+        <div class="formItem">
+            <label>Date d'embauche</label>
+            @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" , @type = "date"})
+        </div>
     </details>
- }
+    <input type="submit" id="submit" style="display: none"/>
