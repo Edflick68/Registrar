@@ -17,7 +17,7 @@
     bool userConnected = Models.User.ConnectedUser != null;
     bool userIsAdmin = userConnected ? Models.User.ConnectedUser.IsAdmin : false;
     bool userCanWrite = userConnected ? Models.User.ConnectedUser.CanWrite : false;
-    string index = RouteConfig.DefaultAction();
+    string index = userConnected ? "/" + controller + "/List" : "/Accounts/Login";
 }
 
 <div class="section roundedBorder">
@@ -29,11 +29,11 @@
                 <i class="fa fa-graduation-cap"></i>
                 Étudiants
             </a>
-            <a href="~/Views/Students/StudentList.cshtml" class="navItem" @(controller == "teachers" ? "navActive" : "")>
+            <a href="~/Views/Teachers/TeacherList.cshtml" class="navItem" @(controller == "teachers" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Cours
             </a>
-            <a href="~/Views/Students/StudentList.cshtml" class="navItem" @(controller == "courses" ? "navActive" : "")>
+            <a href="~/Views/Courses/CourseList.cshtml" class="navItem" @(controller == "courses" ? "navActive" : "")>
                 <i class="fa fa-graduation-cap"></i>
                 Enseignants
             </a>
