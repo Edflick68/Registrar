@@ -22,7 +22,7 @@ namespace Wikimedia.Controllers
         public ActionResult SetYear(int year, string session)
         {
             NextSession.CurrentDate = new DateTime(year, (session == "Automne" ? 8 : 1), 15);
-            return RedirectToAction("Index");
+            return RedirectToAction("StudentList");
         }
         public ActionResult Index(string search = "")
         {
@@ -37,7 +37,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentList");
 
             return View(student);
         }
@@ -53,7 +53,7 @@ namespace Wikimedia.Controllers
             if (ModelState.IsValid)
             {
                 DB.Students.Add(student);
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentList");
             }
             return View(student);
         }
@@ -62,7 +62,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentList");
 
             var registeredCourses = student.NextSessionCourses.ToList();
             var allCourses = DB.Courses.ToList();
@@ -80,7 +80,7 @@ namespace Wikimedia.Controllers
             {
                 student.UpdateRegistrations(selectedCoursesId);
                 DB.Students.Update(student);
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentList");
             }
             return View(student);
         }
@@ -89,7 +89,7 @@ namespace Wikimedia.Controllers
         {
             Student student = DB.Students.Get(id);
             if (student == null)
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentList");
 
             return View(student);
         }
