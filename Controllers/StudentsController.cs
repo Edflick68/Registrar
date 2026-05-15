@@ -32,6 +32,24 @@ namespace Wikimedia.Controllers
 
             return View(students);
         }
+        public ActionResult StudentList(string search = "")
+        {
+            var students = DB.Students.ToList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                search = search.ToLower();
+                students = students.Where(s =>
+                    (s.Code != null && s.Code.ToLower().Contains(search)) ||
+                    (s.FirstName != null && s.FirstName.ToLower().Contains(search)) ||
+                    (s.LastName != null && s.LastName.ToLower().Contains(search))
+                ).ToList();
+            }
+
+            ViewBag.SearchString = search;
+
+            return View("StudentList", students);
+        }
 
         public ActionResult Details(int id)
         {
