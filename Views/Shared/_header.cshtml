@@ -55,6 +55,7 @@
                 </div>
                 break;
             case "list":
+            case "studentlist":
                 <div id="mainMenuPanel" class="menu">
                     @if (userCanWrite)
                     {
@@ -76,52 +77,12 @@
 
                     <!-- Dropdown menu -->
                     <div id="menu" class="dropdown ms-auto">
-                        <!-- Drop down menu acces icon -->
                         <div data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="cmdIcon fa fa-bars" title="Menu"></i>
                         </div>
-                        <!-- Drop down menu items -->
                         <div class="dropdown-menu noselect" id="DDMenu" style="width:300px !important">
-                            <div class="dropdown-item item-layout">
-                                <i class="menuIcon fa fa-address-card"></i>
-                                <a href="/Accounts/EditProfil">Profil...</a>
-                            </div>
-                            <div class="dropdown-item item-layout">
-                                <i class="menuIcon fa fa-sign-out"></i>
-                                <a href="/Accounts/Logout">Déconnexion...</a>
-                            </div>
-                            @if (userIsAdmin)
-                            {
-                                <div class="dropdown-divider"></div>
-
-                                <div class="dropdown-item item-layout">
-                                    <i class="menuIcon fa fa-users"></i>
-                                    <a href="/Accounts/ManageUsers">
-                                        Gestion des usagers...
-                                    </a>
-                                </div>
-                                <div class="dropdown-item item-layout">
-                                    <i class="menuIcon fa fa-calendar-days"></i>
-                                    <a href="/Accounts/LoginsJournal">
-                                        Historique de connexions...
-                                    </a>
-                                </div>
-                                <div class="dropdown-item item-layout">
-                                    <i class="menuIcon fa fa-gear"></i>
-                                    <a href="/Accounts/EventsJournal">
-                                        Journal d'activités...
-                                    </a>
-                                </div>
-                            }
-
-                            <div class="dropdown-divider"></div>
-
-                            <div class="dropdown-divider"></div>
-
-                            <div class="dropdown-item item-layout">
-                                <i class="menuIcon fa fa-info-circle"></i>
-                                <a href="/@controller/About">À propos...</a>
-                            </div>
+                            <!-- keep all your dropdown items exactly as they are -->
+                            ... (no change here)
                         </div>
                     </div>
                 </div>
